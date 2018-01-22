@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="vendor/bootstrap.js"></script>
+    <link rel="icon" type="image/ico" href="images/favicon.ico" />
+    <script type="text/javascript" src="vendor/angular.js"></script>
+    <script type="text/javascript" src="vendor/angular-route.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" href="vendor/bootstrap.css">
+    <link rel="stylesheet" href="vendor/font-awesome.css">
+    <link rel="stylesheet" href="vendor/hamberger.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="hightlight/styles/atom-one-dark.css">
+    <script src="hightlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+
+<h6 class="display-4">1. Thêm</h6><b>1. Thêm</b><p><b>B1:</b> Tạo view để thêm dữ liệu</p><p><b>B2:</b> Trong model khai báo hàm <b>addData</b> </p><pre><code class="php">public function addData($so, $gia)
+{
+	$dulieu = array('so' => $so, 'gia' => $gia);
+	if($this->db->insert('sim_lamlai', $dulieu)) {
+		$this->load->view('thanhcong_view');
+	}
+}</code></pre><p><b>B3:</b> Trong controller. Lấy dữ liệu từ _post</p><p><b>B4:</b> Trong controller. load_model rồi gọi phương thức <b>addData($so,$gia)</b> đã khai báo trước đó</p><h6 class="display-4">2. Xóa</h6><p><b>B1:</b> Trong view xem dữ liệu tạo thêm nút Xóa với <b>href="delete/<?php echo $value['id'] ?>"</b> trong đó <b>delete</b> là tên hàm trong controller, còn <b>id</b> là id của dữ liệu cần xóa</p>
+	<p><b>B2:</b> Trong model khai báo hàm xóa </p><pre><code class="php">public function deleteById($id)
+	{
+		$this->db->where('id', $id);
+		return $this->db->delete('sim_lamlai');
+	}</code></pre><p><b>B3:</b> Trong controller tạo hàm delete($id) với $id được lấy từ href của nút Xóa</p><pre><code class="php">public function delete($id)
+	{
+		$this->load->model('addSim_model');
+		if($this->addSim_model->deleteById($id)) {
+			$this->load->view('thanhcong_view');
+		}
+	}</code></pre><h6 class="display-4">3. Sửa</h6> <p><b>B1:</b> Tạo view để sửa thông tin. Trước đó cũng làm cái button với <b>href="edit/<?php echo $value['id'] ?>"</b></p><p><b>B2:</b> Trong model viết 3 hàm</p><pre><code class="php">public function getData()
+	{
+		$this->db->select('*');
+		$ketqua = $this->db->get('sim_lamlai');
+		$ketqua = $ketqua->result_array();
+
+		return $ketqua;
+	}</code></pre><p class="lead">Hàm này để lấy dữ liệu từ DB rồi biến nó thành array, phục vụ việc xuất ra frontend</p><pre><code class="php">public function editById($id) // tra ve du lieu với id.
+	{
+		$this->db->select('*');
+		$this->db->where('id', $id);
+		$dulieu = $this->db->get('sim_lamlai');
+		$dulieu = $dulieu->result_array();
+
+		return $dulieu;
+	}</code></pre><p class="lead">Hàm này để sửa dữ liệu với đúng id</p><pre><code class="php">	public function updateDataByID($id, $so, $gia)
+	{
+		$dulieuUpdate = array(
+			'id' 	=> $id,
+			'so' 	=> $so,
+			'gia' 	=> $gia
+		);
+
+		$this->db->where('id', $id);
+
+		$this->db->update('sim', $dulieuUpdate);
+	}</code></pre><p><b>B3:</b> Trong controller. Định nghĩa 3 hàm</p><pre><code class="php">public function show()
+{
+	$this->load->model('addSim_model');
+	$dulieu = $this->addSim_model->getData();
+	$dulieu = array('mangdl' => $dulieu);
+
+	$this->load->view('showSim_view', $dulieu, FALSE);
+}</code></pre><p class="lead">Phải biến $dulieu thành array('mangdl') => $dulieu để truyền vào view. Vì view chỉ chấp nhận kiểu array</p><pre><code class="php">public function edit($id)
+{
+	$this->load->model('addSim_model');
+
+	$dl = $this->addSim_model->editById($id);
+	$dl = array('mangdl' => $dl);
+
+	$this->load->view('editSim_view', $dl, FALSE);
+}</code></pre><p class="lead">Hàm này điều khiển khi click vào nút Edit thì nó nhảy sang trang edit</p><pre><code class="php">public function update()
+{
+	$id = $this->input->post('id');
+	$so = $this->input->post('so');
+	$gia = $this->input->post('gia');
+
+	$this->load->model('addSim_model');
+	if($this->addSim_model->updateData($id, $so, $gia)) {
+		$this->load->view('thanhcong_view');
+	}
+}</code></pre><p class="lead">Lấy dữ liệu từ form edit. Gọi hàm updateData trong model để update dữ liệu</p>			
+</body>
+</html> 

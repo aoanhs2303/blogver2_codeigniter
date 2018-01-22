@@ -1,0 +1,104 @@
+/*iPad Pro 12.9: from 1024 - 1200*/
+
+@media only screen and (max-width: 1200px) {
+    .hero-text-box {
+        width: 100%;
+        padding: 0 2%;
+    }
+    .row {padding: 0 2%;}
+}
+
+
+/*iPad landscape: from 768 - 1023*/
+
+@media only screen and (max-width: 1023px) {
+    body {font-size: 18px;}
+    section {padding: 60px 0px;}
+    .long-copy {
+        width: 80%;
+        margin-left: 10%;
+    }
+    .steps-box {margin-top: 10px; }
+    .steps-box:last-child {margin-top: 10px; }
+    .works-step {margin-bottom: 40px;}
+    .works-step:last-child {margin-bottom: 60px;}
+    .app-screen {width: 40%;}
+    .btn-app img {
+        height: 40px;
+        margin-left: 10px;
+    }
+    .icon-small {width: 17px; margin-right: 5px}
+    .city-feature {font-size: 90%}
+    .plan-box {
+	    width: 100%;
+        margin-left: 0px;
+    }
+    .plan-price {
+	    font-size: 250%;
+    }
+    .plan-box ul li {
+        font-size: 95%;
+    }
+    .contact-form {
+	    width: 80%;
+    }
+    .works-step {margin-bottom: 20px;}
+    .works-step:last-child {margin-bottom: 20px;}
+}
+
+
+/*iPhone 6plus, iPad: from 481 - 767*/
+
+@media only screen and (max-width: 767px) {
+    body {font-size: 16px;}
+    section {padding: 30px 0;}
+    .row, .hero-text-box {
+	    padding: 0 4%;
+    }
+/*    .main-nav {display: none;}*/
+    .mobile-nav-icon {display: inline-block}
+    .main-nav {
+	    margin-right: auto;
+    }
+    .main-nav li{
+	    display: block;
+    }
+    .app-screen {
+	    width: 40%;
+    }
+    .main-nav li a:link,
+    .main-nav li a:visited {
+        display: block;
+        border: 0;
+        padding: 5px 0px;
+    }
+    
+    h1 {font-size: 180%};
+    h2 {font-size: 150%};
+    .long-copy {
+	    width: 100%;
+        margin-left: 0%;
+    }
+    .works-step div {
+        height: 40px;
+        width: 40px;
+        padding: 4px;
+        font-size: 120%;
+        margin-right: 15px;
+    }
+    .steps-box:first-child {
+	    text-align: center;
+    }
+    .col { margin: 1% 0 1% 0%;}
+	.span_1_of_2, .span_1_of_4, .span_1_of_3 { width: 100%; }
+}
+
+
+/*iPhone 5: from 0 - 480*/
+
+@media only screen and (max-width: 480px) {
+    section {padding: 25px 0px;}
+    .contact-form {
+        width: 100%;
+    }
+}

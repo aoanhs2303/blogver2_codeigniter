@@ -1,0 +1,42 @@
+body {
+    background-color: #ECECEC;
+    height: 100vh;
+    position: relative;
+}
+.panel-login {
+    background: #FFF; 
+    left: 50%;
+    margin-top: 100px;
+    transform: translateX(-50%);
+    position: absolute;
+}
+input::placeholder {
+    color: #bdc3c7 !important;
+}
+.panel-head .col-6 {
+    background-color: #7f8c8d;
+    padding: 10px;
+}
+.panel-head .col-6.active {
+    background-color: #e67e22;
+}
+.panel-head .col-6 a {
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    color: #FFF;
+    
+}
+.btn-login {
+    background-color: #e67e22;
+    color: #FFF;
+}
+.login-form, .register-form {
+	display: none;
+}
+.panel-body .active {
+    display: block;
+}
+.panel-head a:hover {
+    text-decoration: none !important;
+}

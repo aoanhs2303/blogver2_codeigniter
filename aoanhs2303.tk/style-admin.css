@@ -1,0 +1,31 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+body {
+    font-family: 'Cabin', sans-serif;
+}
+i.fa-weibo {
+    font-size: 40px;
+}
+span.title-blog-header{
+    font-size: 20px;
+    font-weight: 500;
+    margin-left: 6px;
+}
+.avatar {
+    border: 1px solid #ccc;
+    padding: 4px;
+    background-color: darkgrey;
+}
+p.menu-title {
+    font-size: 30px;
+    font-weight: 500;
+    margin: 0px;
+    margin-top: 20px;
+}
+ul.dashboard {
+    list-style: none;
+    
+}
+
